@@ -9,6 +9,9 @@
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div class="viaForm">
 			<form th:action="@{'/viaForm'+'/'+${falesia.id}+'/falesiaAdmin'}" method="post" th:object="${via}">
+				<div class="errors" th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="error:${#fields.globalErrors()}" th:text="${error}">errore globale</p>
+				</div>
 				<div>
 					<label>Nome della via</label>
 					<span class="errors" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>

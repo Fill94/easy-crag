@@ -10,7 +10,7 @@
 	<div class="regioneForm">
 		<form th:action="@{/regioneForm/index}" method="post" th:object="${regione}">
 			<label>Nome della regione</label>
-			<div th:if="${#fields.hasGlobalErrors()}">
+			<div class="errors" th:if="${#fields.hasGlobalErrors()}">
 				<p th:each="error:${#fields.globalErrors()}" th:text="${error}">
 					errore globale</p>
 			</div>

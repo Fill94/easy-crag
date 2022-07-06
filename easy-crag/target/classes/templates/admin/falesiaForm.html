@@ -9,7 +9,7 @@
 	<header th:replace="fragments/base.html :: intestazione"></header>
 	<div class="falesiaForm">
 		<form th:action="@{'/falesiaForm'+'/'+${regione.id}+'/adminPage'}" method="post" th:object="${falesia}">
-				<div th:if="${#fields.hasGlobalErrors()}">
+				<div class="errors" th:if="${#fields.hasGlobalErrors()}">
 				<p th:each="error:${#fields.globalErrors()}" th:text="${error}">errore globale</p>
 				</div>
 				<label>Nome della falesia</label>

@@ -14,4 +14,6 @@ public interface RipetizioneRepository extends CrudRepository<Ripetizione, Long>
 
 	public Ripetizione findByScalatore(User user);
 
+	public boolean existsByViaScalataAndScalatore(Via viaScalata, User scalatore);
+
 }

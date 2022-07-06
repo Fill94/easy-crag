@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.easyCrag.controller.validator.ripetizioneValidator;
 import it.uniroma3.siw.easyCrag.model.Credentials;
 import it.uniroma3.siw.easyCrag.model.Ripetizione;
 import it.uniroma3.siw.easyCrag.model.Via;
@@ -29,7 +30,8 @@ public class RipetizioneController {
 	private ViaService viaService;
 	@Autowired
 	private RipetizioneService ripetizioneService;
-	
+	@Autowired
+	private ripetizioneValidator ripetizioneValidator;
 	@PostMapping(value="/addRipetizione/{idVia}")
 	public String addRipetizione(@ModelAttribute("ripetizione") @Valid Ripetizione ripetizione, BindingResult bindingResult, @RequestParam(name="votoSelezionato", required=false)  Float voto ,@PathVariable("idVia") Long viaId, Model model) {
 		Via via = viaService.findById(viaId);
@@ -42,7 +44,8 @@ public class RipetizioneController {
     	ripetizione.setScalatore(credentials.getUser());
     	ripetizione.setViaScalata(via);
 		ripetizione.setVotoAssegnato(voto);
-    	if(!bindingResult.hasErrors()) {
+    	ripetizioneValidator.validate(ripetizione, bindingResult);
+		if(!bindingResult.hasErrors()) {
     		ripetizioneService.save(ripetizione);
     		Float votoAggiornato = ripetizioneService.calcolaVotoMedio(via);
 			via.setVotoMedio(votoAggiornato);

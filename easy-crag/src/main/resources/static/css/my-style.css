@@ -11,6 +11,7 @@ p{
 }
 header {
 	background: no-repeat left url(/images/climbLogo.png);
+	background-size: 40%;
 	display: flex;
 	height: 500px;
 	min-width: 300px;
@@ -80,4 +81,10 @@ textarea {
 	resize: none;
 	font-family: 'helvetica';
 	font-size: 0.7em;
+}
+select {
+	width: 10em;
+}
+div.errors{
+	color: red;
 }

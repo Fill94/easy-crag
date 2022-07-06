@@ -51,4 +51,9 @@ public class RipetizioneService {
 		return ripetizioneRepository.findById(idRipetizione).get();
 	}
 
+	public boolean alreadyExists(Ripetizione ripetizione) {
+		// TODO Auto-generated method stub
+		return ripetizioneRepository.existsByViaScalataAndScalatore(ripetizione.getViaScalata(), ripetizione.getScalatore());
+	}
+
 }

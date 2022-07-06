@@ -35,6 +35,10 @@
 	     	</select>
 			
 			<button type="submit">invia ripetizione</button>
+			<div class="errors" th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="error:${#fields.globalErrors()}" th:text="${error}">errore globale</p>
+			</div>
+			
 		</form>
 	</div>
 </body>
