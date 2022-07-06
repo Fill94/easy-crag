@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="fragments/base.html :: authBar"></div>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+		<h4>Registrazione</h4>
+		<div class="table">
+			<form th:action="@{/register}" method="POST">
+				<table>
+					<tr>
+						<td>Username</td>
+						<td><input type="text" placeholder="username"
+							th:field="${credentials.username}" /></td>
+						<td th:if="${#fields.hasErrors('credentials.username')}"
+							th:errors="${credentials.username}" th:style="'color:red'"></td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td><input type="password" placeholder="password" required
+							th:field="${credentials.password}" /></td>
+						<td th:if="${#fields.hasErrors('credentials.password')}"
+							th:errors="${credentials.password}" th:style="'color:red'"></td>
+					</tr>
+					<tr>
+						<td>codice admin</td>
+						<td><input type="text" placeholder="codice admin" required
+							th:field="${credentials.adminCode}" /></td>
+						<td th:if="${#fields.hasErrors('credentials.adminCode')}"
+							th:errors="${credentials.adminCode}" th:style="'color:red'"></td>
+					</tr>
+					<tr>
+						<td>Nome</td>
+						<td><input type="text" placeholder="nome" required
+							th:field="${user.nome}" /></td>
+						<td th:if="${#fields.hasErrors('user.nome')}"
+							th:errors="${user.nome}" th:style="'color:red'"></td>
+					</tr>
+					<tr>
+						<td>Cognome</td>
+						<td><input type="text" placeholder="cognome" required
+							th:field="${user.cognome}" /></td>
+						<td th:if="${#fields.hasErrors('user.cognome')}"
+							th:errors="${user.cognome}" th:style="'color:red'"></td>
+					</tr>
+					<tr>
+						<td>
+							<button type="submit">Registra</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

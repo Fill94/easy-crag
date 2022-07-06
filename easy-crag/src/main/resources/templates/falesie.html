@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+	<title>EasyCrag</title>
+</head>
+<body>
+	<div th:replace="fragments/base.html :: authBar"></div>
+	
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="navBar">
+		<a th:href="@{/index}">Home</a>
+	</div>
+	<div class="table">
+		<table>
+			<tr>
+				<th>Nome Falesia</th>
+				<th>numero vie</th>
+			</tr>
+			<th:block th:each="falesia:${falesie}">
+				<tr>
+					<td><a th:href="@{'/falesia'+'/'+${falesia.id}}" th:text="${falesia.nome}"></a></td>
+					<td><p th:text ="${falesia.getVie().size()}"></p></td>
+				</tr>
+			</th:block>
+		</table>
+	</div>
+</body>
+</html>

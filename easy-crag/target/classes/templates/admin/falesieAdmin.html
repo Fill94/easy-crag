@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+</head>
+<body> 
+	<div th:replace="fragments/base.html :: authBar"></div>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="navBar">
+		<a th:href="@{/index}">Home ></a> <a th:href="@{/default}">Area Personale ></a> <span th:text="${regione.nome}"></span>
+	</div>
+	<div>
+		<a th:href ="@{'/falesiaForm'+'/'+${regione.id}}">aggiungi falesia</a>
+	</div>
+	
+	<div class="table">
+		<table>
+			<tr>
+				<th>Nome Falesia</th>
+				<th>numero vie</th>
+			</tr>
+			<th:block th:each="falesia:${falesie}">
+				<tr>
+					<td><a th:href="@{'/falesia'+'/'+${falesia.id}+'/admin'}" th:text="${falesia.nome}"></a> <a th:href="@{'/rimuoviFalesia'+'/'+${falesia.id}+'/'+${regione.id}}">(rimuovi falesia)</a> </td>
+					<td><p th:text ="${falesia.getVie().size()}"></p></td>
+				</tr>
+			</th:block>
+		</table>
+	</div>
+</body>
+</html>

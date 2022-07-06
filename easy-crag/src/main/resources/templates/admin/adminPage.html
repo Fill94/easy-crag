@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+	<title>EasyCrag</title>
+</head>
+<body>
+	<div th:replace="fragments/base.html :: authBar"></div>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="navBar">
+		<a th:href="@{/index}">Home</a>
+	</div>
+	<h3>Admin area</h3>
+	<div>
+		<a th:href="@{/regioneForm}">aggiungi regione</a>
+	</div>
+	<h3>Elenco regioni</h3>
+	<ul>
+			<li th:each="regione:${regioni}">
+				<div class="regioneListItem">
+					<a th:href="@{'/admin/regione'+'/'+${regione.id}}" th:text=${regione.nome}>nome regione</a> <a th:href="@{'/removeRegione'+'/'+${regione.id}}">(rimuovi)</a> 
+				</div>
+			</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+	<title>EasyCrag</title>
+</head>
+<body>
+	<div th:replace="fragments/base.html :: authBar"></div>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="navBar">
+		<a th:href="@{/index}">Home ></a> <a th:href="@{'/regione'+'/'+${via.getFalesia().getRegione().getId()}}" th:text="${via.getFalesia().getRegione().getNome()}">regione></a> <a th:href ="@{'/falesia'+'/'+${via.getFalesia().getId()}}" th:text="${via.getFalesia().getNome()}"></a>
+	</div>
+	<h3 th:text="${via.nome}"></h3>
+	<div>
+		<span>difficoltà via: </span><span th:text="${via.difficolta}">difficoltaVia</span>
+	</div>
+	<div>
+		<span>votoMedio via:</span> <span th:text="${via.votoMedio}">votoMedio</span>
+	</div>
+	<div>
+		<span>aggiungi ripetizione</span>
+		<form th:action="@{'/addRipetizione'+'/'+${via.id}}" method="post" th:object="${ripetizione}">
+			<span>inserisci un voto</span>
+			<select name="votoSelezionato">
+	    			<option th:value="1" th:text="1"></option>
+	    			<option th:value="1.5" th:text="1.5"></option>
+	    			<option th:value="2" th:text="2"></option>
+	    			<option th:value="2.5" th:text="2.5"></option>
+	    			<option th:value="3" th:text="3"></option>
+	    			<option th:value="3.5" th:text="3.5"></option>
+	    			<option th:value="4" th:text="4"></option>
+	    			<option th:value="4.5" th:text="4.5"></option>
+	    			<option th:value="5" th:text="5"></option>
+	     	</select>
+			
+			<button type="submit">invia ripetizione</button>
+		</form>
+	</div>
+</body>
+</html>

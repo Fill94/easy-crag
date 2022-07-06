@@ -2,55 +2,41 @@ package it.uniroma3.siw.easyCrag.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "users") // cambiamo nome perchè in postgres user e' una parola riservata
-public class User {
-	
+public class Regione {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nome;
-	private String cognome;
-	@OneToMany(mappedBy = "scalatore")
-	private List<Ripetizione> ripetizioni;
 	
-	public List<Ripetizione> getRipetizioni() {
-		return ripetizioni;
-	}
-
-	public void setRipetizioni(List<Ripetizione> ripetizioni) {
-		this.ripetizioni = ripetizioni;
-	}
-
+	private String nome;
+	
+	@OneToMany(mappedBy = "regione", cascade = CascadeType.REMOVE)
+	private List<Falesia> falesie;
+	
 	public Long getId() {
 		return id;
 	}
-	
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 	public String getNome() {
 		return nome;
 	}
-	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public String getCognome() {
-		return cognome;
+	public List<Falesia> getFalesie() {
+		return falesie;
+	}
+	public void setFalesie(List<Falesia> falesie) {
+		this.falesie = falesie;
 	}
 	
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
-	}
-
 }

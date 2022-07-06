@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles(title)">
+<meta charset="utf-8" />
+<link th:href="@{/css/my-style.css}" rel="stylesheet">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<div class ="authBar" th:fragment="authBar">
+			<span><a th:href="@{/login}">login</a></span> <span><a th:href="@{/logout}">logout</a></span> <span><a th:href="@{/register}">register</a> </span><span><a th:href="@{/default}">area personale</a></span>
+	</div>
+	<header class ="intestazione" th:fragment="intestazione">
+		<h1>EASY CRAG</h1>	
+	</header>
+	<footer th:fragment="fondo">
+		<a th:href="@{/index}">Home</a>
+		<a th:href="@{/logout}">logout</a>
+	</footer>
+</body>
+</html>

@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+	<title>EasyCrag</title>
 </head>
 <body>
+	<div th:replace="fragments/base.html :: authBar">
+	</div>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+
 	<h3>HomePage</h3>
+	<p>
+		Easy Crag è il servizio degli scalatori per gli scalatori, un luogo dove tenere memoria della proprie performance 
+		sportive e lasciare una valutazione delle vie ripetute per permettere agli altri scalatori di scegliere più 
+		consapevolmente i proprio itinerari.
+		Su Easy Crag potrai trovare tutte le falesie del bel paese divise per regione così da facilitarti la scelta in base
+		alle tue necessità!
+	
+	</p>
+	<div class = "ListaRegioni">
+		<ul>
+			<li th:each="regione:${regioni}">
+				<div class="regioneListItem">
+					<a th:href="@{'/regione'+'/'+${regione.id}}" th:text=${regione.nome}>nome regione</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+
 </body>
-</html>
+</html> 

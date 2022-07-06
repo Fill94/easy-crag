@@ -21,12 +21,14 @@ public class Credentials {
 	@Column(nullable = false)
 	private String password;
 	
+	private int adminCode;
+	
 	@Column(nullable = false)
 	private String role;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -65,5 +67,13 @@ public class Credentials {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getAdminCode() {
+		return adminCode;
+	}
+
+	public void setAdminCode(int adminCode) {
+		this.adminCode = adminCode;
 	}
 }

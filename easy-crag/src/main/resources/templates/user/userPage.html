@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="fragments/base.html :: authBar"></div>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="navBar">
+		<a th:href="@{/index}">Home</a>
+	</div>
+	<h3>User Personal Area</h3>
+	<h4>Le tue Ripetizioni</h4>
+	
+		<ul>
+			<li th:each="ripetizione:${ripetizioni}">
+				<div class="ripetizioneListItem">
+					<span th:text=${ripetizione.viaScalata.getNome()}>via</span> <span th:text="${ripetizione.votoAssegnato}"> voto</span>
+					<a th:href="@{'/rimuoviRipetizione'+'/'+${ripetizione.id}}">(elimina ripetizione)</a>
+				</div>
+			</li>
+		</ul>
+
+	
+</body>
+</html>

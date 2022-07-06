@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="fragments/base.html :: authBar"></div>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="falesiaForm">
+		<form th:action="@{'/falesiaForm'+'/'+${regione.id}+'/adminPage'}" method="post" th:object="${falesia}">
+				<div th:if="${#fields.hasGlobalErrors()}">
+				<p th:each="error:${#fields.globalErrors()}" th:text="${error}">errore globale</p>
+				</div>
+				<label>Nome della falesia</label>
+				<span class="errors" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+				<input type="text" th:field="*{nome}">
+				
+			
+				<label>descrizione della falesia</label>
+				<span class="errors" th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+				<textarea name="descriptionTextArea" th:field="*{descrizione}"></textarea> 
+			
+			<button type="submit">submit</button>
+			
+		</form>
+	</div>
+</body>
+</html>

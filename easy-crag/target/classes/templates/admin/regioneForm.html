@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link th:href="@{/css/my-style.css}" rel="stylesheet">
+</head>
+<body>
+		<div th:replace="fragments/base.html :: authBar"></div>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div class="regioneForm">
+		<form th:action="@{/regioneForm/index}" method="post" th:object="${regione}">
+			<label>Nome della regione</label>
+			<div th:if="${#fields.hasGlobalErrors()}">
+				<p th:each="error:${#fields.globalErrors()}" th:text="${error}">
+					errore globale</p>
+			</div>
+			<select name="regioneSelezionata">
+	    			<option th:each="nomeRegione : ${nomiRegioni}" th:value="${nomeRegione}" th:text="${nomeRegione}"></option>
+	     	</select>
+			<button type="submit">submit</button>
+		</form>
+	</div>
+</body>
+</html>
